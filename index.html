@@ -58,13 +58,66 @@
     </pre></h2>
     <h3 class="answer">Answer:</h3>
     <h3 style="font-style: italic;">Output : <span class="backcolor">1 & 0</span></h3>
-    <h3>Reason: Count is declared and initialized with 0. The function is invoked immediately which is known as <span class="backcolor">IIFE(Immediately Invoked function
+    <h3 style="font-style: italic;">Reason: Count is declared and initialized with 0. The function is invoked immediately which is known as <span class="backcolor">IIFE(Immediately Invoked function
         Expression).</span> Now, the count is compared with 0 and passes into the if condition. Since, the second count variable is declared again with <span class="backcolor">let
         which is block scope.</span> so, count is declared again locally within the block scope and prints as 1. Then,globally the count value is 0. So, 
         now with help of <span class="backcolor">closure, count is found global and retains its value and prints 0.</span> 
     </h3>
     <hr>
-    
+    <h2>Q3. <pre>
+        for (var i = 0; i < 3; i++) {
+            setTimeout(function log() {
+              console.log(i); // What is logged?
+            }, 1000);
+          }
+    </pre></h2>
+    <h3 class="answer">Answer:</h3>
+    <h3 style="font-style: italic;">Output : <span class="backcolor">3 3 3</span></h3>
+    <h3 style="font-style: italic;">Reason: Here, the <span class="backcolor">setTimeout() function is looped three times from 0 to 2.</span> Mainly, 
+        the looping variable is declared with <span class="backcolor">var i</span> and it is not block scope, instead it is functional scope. so, var i
+        is incremented 3 times and <span class="backcolor">i=3 after one second (1000ms)</span>. Thus, it prints <span class="backcolor">3 3 3</span>
+    </h3>
+    <hr>
+    <h2>Q4. Write a code to calculate area of a rectangle using inner function. In this case outer function should accept parameter length and inner 
+        function should accept parameter breadth.
+    </h2>
+    <h3 class="answer">Answer:</h3>
+    <h3 class="code"><pre>
+        function outer(length) {
+            function inner(breadth) {
+                return length * breadth;
+            }
+            return inner;
+        }
+        var area = outer(5);
+        console.log(area(5));
+    </pre></h3>
+    <h3 style="font-style: italic;">Output : <span class="backcolor">25</span></h3>
+    <h3 style="font-style: italic;">Reason: Outer() function have a parameter called <span class="backcolor">length</span> is invoked and stored in a 
+        <span class="backcolor">variable var area.</span> But the outer() returns the inner() function. So, logically var area is having <span class="backcolor">
+        inner() function.</span> Now, outer(5) is passed and taken as length and area(5) is a inner() function with a parameter 5 which gets 
+        multiplied and returned to area. With the help of closure, length variable is accessed from outer function even after the outer function is 
+        already been executed. So, the output is <span class="backcolor">25</span>
+    </h3>
+    <hr>
+    <h2>Q5. Take a variable in outer function and create an inner function to increase the counter every time it is called</h2>
+    <h3 class="answer">Answer:</h3>
+    <h3 class="code"><pre>
+        function outer() {
+            var count = 0;
+            function inner() {
+                count++;
+                return count;
+            }
+            return inner;
+        }
+        var sample = outer();
+        console.log(sample());
+        console.log(sample());
+        console.log(sample());
+        console.log(sample());
+        console.log(sample());
+    </pre></h3>
     <script src="./index.js"></script>
 </body>
 </html>
