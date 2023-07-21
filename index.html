@@ -118,6 +118,73 @@
         console.log(sample());
         console.log(sample());
     </pre></h3>
+    <h3 style="font-style: italic;">Output : <span class="backcolor">1 2 3 4 5</span></h3>
+    <h3 style="font-style: italic;">Reason: The outer() is called and stored in sample variable which we know as a first class function. The Outer
+        function <span class="backcolor">have a count variable initialized with 0</span>. outer() returns the inner() function which is stored in
+        <span class="backcolor">var sample</span>. So, whenever the sample is invoked, count gets incremented and referenced with outer function 
+        using closures. SO, whenever sample() is called, it directly invokes inner() function and count gets incremented and returned.
+    </h3>
+    <hr>
+    <h2>Q6. <pre>
+        Print Output
+
+        var a = 12;
+        (function () {
+            alert(a);
+        })();
+    </pre></h2>
+    <h3 class="answer">Answer:</h3>
+    <h3 style="font-style: italic;">Output : <span class="backcolor">12</span></h3>
+    <h3 style="font-style: italic;">Reason: Simply, using <span class="backcolor">IIFE</span> function is invoked immediately. 
+        <span class="backcolor">var a is declared globally and initialized with value 12.</span> function accesses variable a which is not 
+        present inside the functional scope. So, with the help of closures it searches the variable out of the functional scope and accesses it 
+        gloablly. Thus, it prints 12.
+    </h3>
+    <hr>
+    <h2>Q7. <pre>
+        var a = 10;
+        var x = (function () {
+            var a = 12;
+            return function () {
+                alert(a);
+            };
+        })();
+        x();
+    </pre></h2>
+    <h3 class="answer">Answer:</h3>
+    <h3 style="font-style: italic;">Output : <span class="backcolor">12</span></h3>
+    <h3 style="font-style: italic;">Reason: var a is declared globally and stores 10. <span class="backcolor">var x stores the returned 
+        inner function with alert(a).</span> The outer function is invoked using IIFE and inner function has a same variable a which is functional scoped
+        and its value is 12. <span class="backcolor">So, when x() is called it prints 12.</span>
+    </h3>
+    <hr>
+    <h2>Q8. <pre>
+        var globalVar = "xyz";
+        (function outerFunc(outerArg) {
+                var outerVar = 'a';
+                (function innerFunc(innerArg) {
+                        var innerVar = 'b';
+                        console.log(
+                                    "outerArg = " + outerArg + "\n" +
+                                    "innerArg = " + innerArg + "\n" +
+                                    "outerVar = " + outerVar + "\n" +
+                                    "innerVar = " + innerVar + "\n" +
+                                    "globalVar = " + globalVar
+                                    );
+                })(456);
+        })(123);
+    </pre></h2>
+    <h3 class="answer">Answer:</h3>
+    <h3 style="font-style: italic;">Output : <span class="backcolor"><br>outerArg = 123<br>
+        innerArg = 456<br>
+        outerVar = a<br>
+        innerVar = b<br>
+        globalVar = xyz</span></h3>
+    <h3 style="font-style: italic;">Reason: <span class="backcolor">globalvar is a variable declared and initialized with a value "xyz" gloablly.</span>
+        The outerFunc() is passed with <span class="backcolor">123</span> as an outerarg and it has a variable called 'a'. The innerFunc() is passed
+        with <span class="backcolor">456</span> as an innerarg and it has a variable called 'b'. Thus the corresponding values are printed.
+    </h3>
+    <hr>
     <script src="./index.js"></script>
 </body>
 </html>
